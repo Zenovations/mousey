@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>jQuery Mousey Example</title>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery.mousey.js"></script>
+    <link type="text/css" rel="stylesheet" href="example.css" />
+
+    <script type="text/javascript">
+        jQuery(function($) { //onready
+
+            var $mousey = $('#mousey')
+                    .mousey('init', {duration: 750})  // initialize
+                    .mousey('#one')                   // move to #one
+                    .mousey('#two')                   // move to #two
+                    .mousey('#three')                 // move to #three
+                    .mousey({of: '#three', duration: 3000, mouseImage: 'hourglass.gif',
+                        hoverEffect: false, clickEffect: false})     // wait a while
+                    .mousey({of: '#content', hoverEffect: false, clickEffect: false, hide: 100}) // move to #content center and disappear
+                    ;
+
+            // the rest of this just sets up the controls at the page top, which can be used
+            // to fiddle with the options and see it work
+
+            $('#go').click(function() { // when go is clicked, move the mousey
+               $mousey.mousey(_props());
+            });
+
+            $(document).mousemove(function(e){ // when the real mouse moves, show the coords for fun
+                $('#log').html(e.pageX +', '+ e.pageY);
+            });
+
+            $('#horiz').change(function() { // check to see if we need to show a text field (for numeric entry)
+                if( $(this).val() === 'number' ) {
+                    $('#horizNumber').show();
+                }
+                else {
+                    $('#horizNumber').hide();
+                }
+            });
+
+            $('#vert').change(function() { // check to see if we need to show a text field (for numeric entry)
+                if( $(this).val() === 'number' ) {
+                    $('#vertNumber').show();
+                }
+                else {
+                    $('#vertNumber').hide();
+                }
+            });
+
+            function _val(t) { // get a value (numeric or from select box)
+                var sel = '#'+ t, selNumber = sel+'Number', v = $(sel).val();
+                if( v === 'number' ) {
+                    return $(selNumber).val();
+                }
+                else {
+                    return v;
+                }
+            }
+
+            function _props() { // generate the mousey props from controls
+                return {
+                    at: _val('horiz')+' '+_val('vert'),
+                    of: $('#of').val(),
+                    duration: $('#duration').val(),
+                    easing: $('#easing').val(),
+                    hide: !!$('#hide:checked').length
+                };
+            }
+
+        });
+    </script>
+
+</head>
+<body>
+
+<!-- controls for fiddling with mousey -->
+<div id="head">
+    Put mousey at
+        <select id="horiz">
+            <option>left</option>
+            <option>center</option>
+            <option>middle</option>
+            <option>right</option>
+            <option>number</option>
+        </select>
+        <input type="text" id="horizNumber" size=4 style="display: none" />
+    &nbsp;
+        <select id="vert">
+            <option>top</option>
+            <option>center</option>
+            <option>middle</option>
+            <option>bottom</option>
+            <option>number</option>
+        </select>
+        <input type="text" id="vertNumber" size=4 style="display: none" />
+    of
+        <select id="of">
+            <option>#one</option>
+            <option>#two</option>
+            <option>#three</option>
+            <option>#head</option>
+            <option>#content</option>
+            <option>#foot</option>
+            <option>body</option>
+        </select>
+    using duration <input type='text' size=10 id="duration" value='1000' />
+    and easing
+        <select id="easing">
+            <option>swing</option>
+            <option>linear</option>
+        </select>
+    &nbsp;
+        <input type="checkbox" id="hide" value="1" /> hide after
+    &nbsp;
+        <input type="button" id="go" value="GO" />
+</div>
+<div id="content">
+    <!-- some reference points we can move mousey to -->
+    <div id="one">1</div>
+    <div id="two">2</div>
+</div>
+<div id="foot"></div>
+
+<div id="three">3</div>
+
+<div id="mousey"></div> <!-- the mousey object we'll fling around (there could be more than one) -->
+
+<!-- somewhere to display the real mouse coords -->
+<div id="log"></div>
+
+</body>
+</html>
