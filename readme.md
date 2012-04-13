@@ -1,4 +1,0 @@
-
-Mousey animations for jQuery
-============================
-
