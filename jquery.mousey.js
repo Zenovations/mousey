@@ -221,7 +221,6 @@
             // should be able to compare now to fx.start, but this doesn't work in all cases (now seems to get updated
             // with fx.start on each step) so we use a scoped variable
             started = true;
-            console.log('start step');
             $(this).find('.mousey-mouseImage').attr('src', opts.mouseImage);
          }
       });
