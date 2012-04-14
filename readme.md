@@ -3,7 +3,7 @@ Mousey animations for jQuery
 ============================
 
 What is it?
------------ 
+-----------
 
 Mousey simulates a mouse moving around on the screen. Including:
 

@@ -2,7 +2,7 @@
 (function($) {
 
    /**
-    * Usage examples:
+    * Examples:
     * <code>
     *    var $point3 = $('#point3');
     *
