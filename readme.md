@@ -14,8 +14,8 @@ Mousey simulates a mouse moving around on the screen. Including:
 
 [See it in action here](http://katowulf.github.com/mousey/)
 
-How it works
-------------
+How Does it Work?
+-----------------
 
 How to create a mousey:
 
@@ -76,8 +76,8 @@ More complex examples:
 
 ```
 
-Configuration
--------------
+Configuration Options
+---------------------
 
 Mousey is highly configurable. The config options can be set...
 
