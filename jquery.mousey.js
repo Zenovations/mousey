@@ -2,7 +2,7 @@
 (function($) {
 
    /**
-    * Usage examples:
+    * Examples:
     * <code>
     *    var $point3 = $('#point3');
     *
@@ -132,8 +132,7 @@
 
       /**
        * If this is a function, it is called upon completion of the animation to create the click effect.
-       * `this` is set to the object being animated, but unline normal calls to jQuery.fn.animate, this passes
-       * a single argument, containing the opts hash used by the mousey command (i.e. all the properties of the effect).
+       * `this` is set to the object being animated, the config options are passed as an argument to the function call
        *
        * @var {Function}
        */
@@ -142,6 +141,8 @@
       /**
        * If this is a function, it's called during each step of the animation, to create the over effect. The default
        * behavior is simply to display `overImage` until the animation is completed.
+       *
+       * `this` is set to the object being animated, the config options are passed as an argument to the function call
        */
       hoverEffect: $.fn.mousey.hoverEffect,
 
