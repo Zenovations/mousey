@@ -51,7 +51,7 @@
       if( !init ) {
          combinedOpts = $.extend({}, props, $.isPlainObject(dest)? dest : {of: dest}, {inside: null});
 
-         console.log(combinedOpts.duration);
+         _preload(combinedOpts);
 
          // restores the original mousey image whenever a new animation starts, must be in the queue because if not
          // then it may get restored immediately (before queued events run to alter it)
@@ -96,7 +96,7 @@
       isIn = $.fn.mousey.inside($this, inside.box);
       if( inside.isIn !== isIn ) {
          inside.isIn = isIn;
-         $this.find('.mousey-mouseImage').attr('src', isIn? opts.overImage : opts.mouseImage);
+         $this.find('.mousey-mouseImage').attr('src', isIn? opts.hoverImage : opts.mouseImage);
       }
    };
 
@@ -122,7 +122,7 @@
       mouseImage:  'pointer-arrow.png',
 
       /** @var {string} url to image we display in hoverEffect */
-      overImage:   'pointer-hand.png',
+      hoverImage:   'pointer-hand.png',
 
       /** @var {string} url to image we display in clickEffect */
       clickImage:  'clicky.png',
@@ -140,7 +140,7 @@
 
       /**
        * If this is a function, it's called during each step of the animation, to create the over effect. The default
-       * behavior is simply to display `overImage` until the animation is completed.
+       * behavior is simply to display `hoverImage` until the animation is completed.
        *
        * `this` is set to the object being animated, the config options are passed as an argument to the function call
        */
@@ -250,6 +250,17 @@
    function _off(opts) {
       var $e = $(opts.of), off = $e.offset(), at = _at(opts);
       return {left: _left($e, off, at[0]), top: _top($e, off, at[1])};
+   }
+
+   /**
+    * Preload images
+    * @param {Object} opts
+    * @private
+    */
+   function _preload(opts) {
+      if( opts.mouseImage ) {$('<img />')[0].src = opts.mouseImage; }
+      if( opts.hoverImage ) {$('<img />')[0].src = opts.hoverImage; }
+      if( opts.clickImage ) {$('<img />')[0].src = opts.clickImage; }
    }
 
 })(jQuery);

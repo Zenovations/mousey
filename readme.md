@@ -90,7 +90,7 @@ unless you put jquery.mousey.js and the image files into the same folder as the 
 
     $.extend($.fn.mousey.defaults, {
          mouseImage: '/images/skull.png',
-         overImage:  '/images/over.png',
+         hoverImage: '/images/over.png',
          clickImage: 'http://picasaweb/myname/album/name/image.png'
     });
 
@@ -99,13 +99,13 @@ The configuration options are:
 - `at`: {string} "x y" positions relative to `of` for origin (at init) or target (all other calls); any of 'left|middle|center|right|integer top|middle|center|bottom|integer'
 - `of`: {jQuery|string|DomElement} origin element (at init) or target (all other calls)
 - `mouseImage`: {string} url to the default mouse image
-- `overImage`: {string} url to image we display in hoverEffect
+- `hoverImage`: {string} url to image we display in hoverEffect
 - `clickImage`: {string} url to image we display in clickEffect
 - `zIndex`: {int} ensures mousey appears above other layers
 - `clickEffect`: {Function|null} If exists, called upon completion of move to create click event.
         `this` is set to the object being animated, the config options are passed as an argument to the function call
 - `hoverEffect`: {Function|null} If exists, called when mousey enters the target element to create hover event
-        default behavior is simply to display `overImage` until the animation completes or mousey moves out of the target (if offset is big enough)
+        default behavior is simply to display `hoverImage` until the animation completes or mousey moves out of the target (if offset is big enough)
         `this` is set to the object being animated, the config options are passed as an argument to the function call
 - `duration`: {int} this is passed straight to jQuery.fn.animate
 - `easing` {String} this is passed straight to jQuery.fn.animate
