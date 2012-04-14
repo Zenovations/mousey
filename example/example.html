@@ -12,7 +12,7 @@
         jQuery(function($) { //onready
 
             var $mousey = $('#mousey')
-                    .mousey('init', {duration: 750})  // initialize
+                    .mousey('init')  // initialize
                     .mousey('#one')                   // move to #one
                     .mousey('#two')                   // move to #two
                     .mousey('#three')                 // move to #three
@@ -64,7 +64,7 @@
                 return {
                     at: _val('horiz')+' '+_val('vert'),
                     of: $('#of').val(),
-                    duration: $('#duration').val(),
+                    duration: ~~$('#duration').val(),
                     easing: $('#easing').val(),
                     hide: !!$('#hide:checked').length
                 };

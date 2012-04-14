@@ -51,10 +51,19 @@
       if( !init ) {
          combinedOpts = $.extend({}, props, $.isPlainObject(dest)? dest : {of: dest}, {inside: null});
 
-         this.find('.mousey-mouseImage').attr('src', combinedOpts.mouseImage)
-             .end().show().animate(_off(combinedOpts), _animProps(combinedOpts));
+         console.log(combinedOpts.duration);
+
+         // restores the original mousey image whenever a new animation starts, must be in the queue because if not
+         // then it may get restored immediately (before queued events run to alter it)
+         this.queue(function(next) {
+               $(this).find('.mousey-mouseImage').attr('src', combinedOpts.mouseImage);
+               next();
+            })
+            // reveal our mousey and run the animation to move it appropriately
+            .show().animate(_off(combinedOpts), _animProps(combinedOpts));
 
          if( combinedOpts.clickEffect ) {
+            // simply queue up the click effect to occur directly after our animate() call is completed
             this.queue(function(next) {
                combinedOpts.clickEffect.call(this, combinedOpts);
                next();
@@ -62,6 +71,7 @@
          }
 
          if( combinedOpts.hide !== false ) {
+            // simply queue up our hide effect to occur directly after the animate and possibly the click event
             this.queue(function(next) {
                $(this).hide(combinedOpts.hide);
                next();
@@ -209,21 +219,6 @@
       if( opts.hoverEffect ) {
          _ext(opts, 'step', opts.hoverEffect);
       }
-      if( opts.clickEffect ) {
-         _ext(opts, 'complete', opts.clickEffect);
-      }
-      // this must be after the hoverEffect, so it's executed first : )
-      // restores the original mousey image whenever a new animation starts (since the properties can change it
-      // and it may still be on the hover effect or otherwise altered)
-      var started = false;
-      _ext(opts, 'step', function(now, fx, opts) {
-         if( !started ) {
-            // should be able to compare now to fx.start, but this doesn't work in all cases (now seems to get updated
-            // with fx.start on each step) so we use a scoped variable
-            started = true;
-            $(this).find('.mousey-mouseImage').attr('src', opts.mouseImage);
-         }
-      });
    }
 
    function _clickOff($e, $img) {
