@@ -17,8 +17,8 @@
                     .mousey('#two')                   // move to #two
                     .mousey('#three')                 // move to #three
                     .mousey({of: '#three', duration: 3000, mouseImage: 'hourglass.gif',
-                        hover: false, click: false})     // wait a while
-                    .mousey({of: '#content', hover: false, click: false, hide: 100}) // move to #content center and disappear
+                        hoverEffect: false, clickEffect: false})     // wait a while
+                    .mousey({of: '#content', hoverEffect: false, clickEffect: false, hide: 100}) // move to #content center and disappear
                     ;
 
             // the rest of this just sets up the controls at the page top, which can be used

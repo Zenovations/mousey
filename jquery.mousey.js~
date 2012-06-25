@@ -175,6 +175,16 @@
       realClick: false
    };
 
+   var LIB_DIR = typeof(window.LIB_DIR) === 'string'? window.LIB_DIR : '/lib/';
+
+   // Declare location of the mousey pointers (relative to html page)
+   $.extend($.fn.mousey.defaults, {
+      mouseImage: LIB_DIR+'jquery/mousey/pointer-arrow.png',
+      hoverImage: LIB_DIR+'jquery/mousey/pointer-hand.png',
+      clickImage: LIB_DIR+'jquery/mousey/clicky.png'
+   });
+
+
    /**
     * The first time this is called, it initializes the mousey object and caches it using jQuery.fn.data, overriding
     * any defaults supplied by `opts`. After the initial call, this simply loads the defaults, overrides anything
